@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ThemeGram | Free iPhone Themes For Download! no Subscription</title>
+    <title>ThemeGram | Free iPhone Themes & Wallpapers</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.png">
     <link rel="manifest" href="manifest.json">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -30,8 +30,14 @@
             font-size: 14px;
             font-weight: 600;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            z-index: 100;
+            z-index: 1000;
             display: none;
+        }
+
+        .category-pill.active {
+            background-color: #2563eb;
+            color: white;
+            border-color: #2563eb;
         }
     </style>
 </head>
@@ -42,7 +48,9 @@
     <!-- Header -->
     <header id="main-header" class="sticky top-0 z-40 bg-black/80 backdrop-blur-xl border-b border-gray-800 px-4 h-16 flex items-center justify-between">
         <div class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-gradient-to-tr from-red-400 to-red-700 rounded-lg flex items-center justify-center text-white font-black text-sm italic shadow-md ring-1 ring-white/10"><img src="assets/favicon.png"></div>
+            <div class="w-8 h-8 bg-gradient-to-tr from-red-400 to-red-700 rounded-lg flex items-center justify-center text-white font-black text-sm italic shadow-md ring-1 ring-white/10">
+                <img src="assets/favicon.png" onerror="this.src='https://placehold.co/32x32/ff0000/ffffff?text=TG'">
+            </div>
             <span class="font-bold text-lg tracking-tight">ThemeGram</span>
         </div>
         <div id="search-trigger" class="w-10 h-10 rounded-full flex items-center justify-center text-gray-400 cursor-pointer hover:bg-gray-800">
@@ -54,20 +62,32 @@
     <div id="search-bar" class="hidden sticky top-0 z-50 bg-black border-b border-gray-800 px-4 h-16 flex items-center gap-3">
         <div class="relative flex-1">
             <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 w-4 h-4"></i>
-            <input id="search-input" type="text" placeholder="Search themes..." class="w-full bg-gray-900 border border-gray-700 rounded-xl py-2 pl-9 pr-4 text-sm focus:outline-none focus:border-blue-500">
+            <input id="search-input" type="text" placeholder="Search items..." class="w-full bg-gray-900 border border-gray-700 rounded-xl py-2 pl-9 pr-4 text-sm focus:outline-none focus:border-blue-500">
         </div>
         <button id="cancel-search" class="text-blue-500 font-semibold text-sm">Cancel</button>
     </div>
 
-    <!-- Main Content -->
+    <!-- Main Content (Themes) -->
     <main id="content-area" class="flex-1 overflow-y-auto no-scrollbar pb-32">
         <div id="hero" class="px-4 py-6">
             <div class="relative w-full h-44 rounded-3xl overflow-hidden shadow-xl bg-gradient-to-br from-red-600 via-red-450 to-red-420 flex items-center justify-center text-center border border-white/10">
-                <div class="z-10">
-                    <h1 class="text-3xl font-black mb-1">Best of 2024</h1>
-                    <p class="text-sm font-medium opacity-80">Trending styles for your iPhone</p>
-                    <button class="mt-4 bg-white text-purple-900 px-6 py-2 rounded-full font-bold text-sm shadow-lg active:scale-95 transition-transform">Explore Now</button>
+                <div class="z-10 px-6">
+                    <h1 class="text-3xl font-black mb-1">Best of 2025</h1>
+                    <p class="text-sm font-medium opacity-80">Premium aesthetics for your device</p>
+                    <button class="mt-4 bg-white text-red-600 px-6 py-2 rounded-full font-bold text-sm shadow-lg active:scale-95 transition-transform">Explore Now</button>
                 </div>
+                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800" class="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-overlay" alt="Banner">
+            </div>
+        </div>
+
+        <!-- Categories Filter -->
+        <div class="px-4 mb-6">
+            <div id="category-list" class="flex gap-2 overflow-x-auto no-scrollbar pb-2">
+                <button class="category-pill active whitespace-nowrap px-4 py-2 rounded-full bg-gray-900 border border-gray-800 text-sm font-medium transition-colors" data-category="All">All</button>
+                <button class="category-pill whitespace-nowrap px-4 py-2 rounded-full bg-gray-900 border border-gray-800 text-sm font-medium transition-colors" data-category="Holiday">Holiday</button>
+                <button class="category-pill whitespace-nowrap px-4 py-2 rounded-full bg-gray-900 border border-gray-800 text-sm font-medium transition-colors" data-category="Cartoon">Cartoon</button>
+                <button class="category-pill whitespace-nowrap px-4 py-2 rounded-full bg-gray-900 border border-gray-800 text-sm font-medium transition-colors" data-category="Basic">Minimal</button>
+                <button class="category-pill whitespace-nowrap px-4 py-2 rounded-full bg-gray-900 border border-gray-800 text-sm font-medium transition-colors" data-category="Neon">Neon</button>
             </div>
         </div>
 
@@ -79,18 +99,30 @@
         <div id="themes-grid" class="grid grid-cols-2 gap-4 px-4"></div>
     </main>
 
+    <!-- Wallpaper Content -->
+    <main id="wallpaper-area" class="hidden flex-1 overflow-y-auto no-scrollbar pb-32">
+        <div class="px-5 py-6 flex flex-col gap-1">
+            <h2 class="text-2xl font-black">Wallpapers</h2>
+            <p class="text-sm text-gray-500">Pick the perfect background for your home screen.</p>
+        </div>
+        <div id="wallpaper-grid" class="grid grid-cols-2 gap-4 px-4"></div>
+    </main>
+
     <!-- Profile View -->
-    <main id="profile-area" class="hidden flex-1 overflow-y-auto px-4 py-8">
+    <main id="profile-area" class="hidden flex-1 overflow-y-auto px-4 py-8 pb-32">
         <div class="flex items-center gap-4 mb-8">
             <div class="w-16 h-16 rounded-full bg-gray-800 flex items-center justify-center text-2xl border border-gray-700">👤</div>
             <div>
                 <h2 class="text-xl font-bold">Guest User</h2>
-                <span class="text-xs text-gray-400 bg-gray-900 border border-gray-800 px-2 py-1 rounded-full">Free Plan</span>
+                <div class="flex items-center gap-2">
+                    <span id="profile-status" class="text-xs text-gray-400 bg-gray-900 border border-gray-800 px-2 py-1 rounded-full">Free Plan</span>
+                    <span id="vip-timer" class="text-[10px] text-amber-500 font-mono hidden">00:00</span>
+                </div>
             </div>
         </div>
-        <div class="bg-gradient-to-r from-amber-900 to-yellow-800 rounded-2xl p-4 mb-6 border border-yellow-700/30">
-            <h3 class="font-bold flex items-center gap-2"><i data-lucide="crown" class="w-4 h-4 fill-current"></i> Go Premium</h3>
-            <p class="text-xs opacity-80 mt-1">Unlock all themes & remove ads</p>
+        <div id="go-vip-banner" class="bg-gradient-to-r from-amber-900 to-yellow-800 rounded-2xl p-4 mb-6 border border-yellow-700/30">
+            <h3 class="font-bold flex items-center gap-2"><i data-lucide="crown" class="w-4 h-4 fill-current"></i> Go VIP</h3>
+            <p class="text-xs opacity-80 mt-1">Unlock all themes & Wallpapers now for just $0,99/Month | UNTIL JAN 25, 2025 | Was $2,80/Month</p>
         </div>
         <div class="space-y-2">
             <a href="favorites.html" class="bg-gray-900 p-4 rounded-xl border border-gray-800 flex justify-between items-center">
@@ -98,17 +130,21 @@
                 <i data-lucide="chevron-right" class="text-gray-600 w-5 h-5"></i>
             </a>
             <a href="settings.html" class="bg-gray-900 p-4 rounded-xl border border-gray-800 flex justify-between items-center">
-                <span class="font-medium flex items-center gap-3"><i data-lucide="settings" class="text-pink-500 fill-pink-500 w-5 h-5"></i>Settings</span>
+                <span class="font-medium flex items-center gap-3"><i data-lucide="settings" class="text-gray-400 w-5 h-5"></i>Settings</span>
                 <i data-lucide="chevron-right" class="text-gray-600 w-5 h-5"></i>
             </a>
         </div>
     </main>
 
     <!-- Tab Bar -->
-    <nav class="fixed bottom-0 left-0 right-0 bg-black/90 backdrop-blur-xl border-t border-gray-800 safe-bottom flex justify-around py-3">
+    <nav class="fixed bottom-0 left-0 right-0 bg-black/90 backdrop-blur-xl border-t border-gray-800 safe-bottom flex justify-around py-3 z-50">
         <button id="nav-themes" class="flex flex-col items-center gap-1 text-blue-500">
             <i data-lucide="layout-grid"></i>
             <span class="text-[10px] font-medium">Themes</span>
+        </button>
+        <button id="nav-wallpapers" class="flex flex-col items-center gap-1 text-gray-500">
+            <i data-lucide="image"></i>
+            <span class="text-[10px] font-medium">Wallpapers (NEW!)</span>
         </button>
         <button id="nav-mine" class="flex flex-col items-center gap-1 text-gray-500">
             <i data-lucide="user"></i>
@@ -120,20 +156,22 @@
     <div id="theme-modal" class="hidden fixed inset-0 z-[60] bg-black flex flex-col modal-enter">
         <div class="h-16 border-b border-gray-800 flex items-center justify-between px-4 sticky top-0 bg-black">
             <button id="close-modal" class="p-2 text-blue-400"><i data-lucide="chevron-left"></i></button>
-            <span id="modal-title" class="font-bold">Theme Name</span>
+            <span id="modal-title" class="font-bold">Item Details</span>
             <button id="modal-favorite" class="p-2"><i data-lucide="heart" class="w-6 h-6"></i></button>
         </div>
         <div class="flex-1 overflow-y-auto p-6 pb-32 flex flex-col items-center">
-            <div id="modal-preview-box" class="w-full max-w-xs aspect-square rounded-[2.5rem] p-8 shadow-2xl flex items-center justify-center mb-8 relative">
-                <div id="modal-icon-grid" class="grid grid-cols-2 gap-4 w-full h-full"></div>
+            <div id="modal-preview-box" class="w-full max-w-xs rounded-[2.5rem] shadow-2xl relative overflow-hidden flex items-center justify-center">
+                <div id="theme-preview-elements" class="absolute inset-0 z-10 p-8 grid grid-cols-2 gap-4"></div>
+                <img id="modal-banner" src="" class="w-full h-full object-cover">
             </div>
-            <div class="w-full max-w-xs">
-                <h1 id="modal-info-title" class="text-3xl font-bold mb-2">Theme</h1>
+            
+            <div class="w-full max-w-xs mt-8">
+                <h1 id="modal-info-title" class="text-3xl font-bold mb-2">Item</h1>
                 <p id="modal-info-cat" class="text-gray-400 mb-6"></p>
-                <div class="grid grid-cols-2 gap-4">
+                <div id="modal-stats" class="grid grid-cols-2 gap-4">
                     <div class="bg-gray-900 p-4 rounded-xl border border-gray-800">
-                        <span id="modal-icon-count" class="text-2xl font-bold block">120</span>
-                        <span class="text-[10px] text-gray-500 uppercase">Icons</span>
+                        <span id="modal-stat-1-val" class="text-2xl font-bold block">120</span>
+                        <span id="modal-stat-1-lbl" class="text-[10px] text-gray-500 uppercase">Icons</span>
                     </div>
                     <div class="bg-gray-900 p-4 rounded-xl border border-gray-800">
                         <span id="modal-license" class="text-2xl font-bold block">Free</span>
@@ -146,78 +184,255 @@
             <button id="btn-share" class="flex-1 bg-gray-800 py-4 rounded-2xl font-bold flex items-center justify-center gap-2">
                 <i data-lucide="share" class="w-5 h-5"></i> Share
             </button>
-            <a id="btn-install" href="#" target="_blank" class="flex-[2] bg-blue-600 py-4 rounded-2xl font-bold text-center">Install Pack</a>
+            <button id="btn-install" class="flex-[2] bg-blue-600 py-4 rounded-2xl font-bold text-center">Install Pack</button>
+        </div>
+    </div>
+
+    <!-- VIP Verification Modal -->
+    <div id="vip-modal" class="hidden fixed inset-0 z-[100] bg-black/60 backdrop-blur-md flex items-center justify-center p-6">
+        <div class="bg-[#111] border border-gray-800 rounded-3xl w-full max-w-xs p-8 shadow-2xl flex flex-col items-center text-center">
+            <div class="w-16 h-16 bg-amber-500/20 text-amber-500 rounded-full flex items-center justify-center mb-4">
+                <i data-lucide="crown" class="w-8 h-8"></i>
+            </div>
+            <h2 class="text-xl font-bold mb-2">VIP Access Required</h2>
+            <p class="text-sm text-gray-400 mb-6">Enter your 4-digit access code to unlock this premium content for a limited time.</p>
+            
+            <input id="vip-pin-input" type="password" maxlength="9" placeholder="VIP" class="w-full bg-black border border-gray-700 rounded-xl py-4 text-center text-2xl tracking-[1rem] font-black focus:outline-none focus:border-amber-500 mb-6">
+            
+            <div class="flex gap-3 w-full">
+                <button id="cancel-vip" class="flex-1 bg-gray-800 py-3 rounded-xl font-bold text-sm">Cancel</button>
+                <button id="verify-vip" class="flex-1 bg-[#222] text-white py-3 rounded-xl font-bold text-sm">Verify</button>
+            </div>
         </div>
     </div>
 
     <script>
+        // --- VIP SETTINGS ---
+        const VIP_PIN = "VIPMEMBER"; 
+        const VIP_DURATION_MS = 5 * 60 * 1000; // 5 Minutes in milliseconds
+        
+        let hasVipAccess = false; 
+
         const THEMES = [
-            { id: '1', title: 'XMAS2025', category: 'Holiday', url: 'https://drive.google.com/uc?export=download&id=1AaXbDRcdwMeS8FMoATDg0B9N7hJHJz_j', colors: ['from-red-500', 'to-red-900'], isPremium: false, iconCount: 34, icons: [{t:'X',b:'red'},{t:'M',b:'lightred'},{t:'A',b:'pink'},{t:'S',b:'darkred'}] },
-            { id: '2', title: 'Rick And Morty', category: 'Cartoon', url: 'https://drive.google.com/uc?export=download&id=1jBNIQDMrtXD1IlVoR-K1INRd12Cb_2RV', colors: ['from-yellow-500', 'to-green-900'], isPremium: false, iconCount: 21, icons: [{t:'R',b:'green'},{t:'I',b:'lightgreen'},{t:'C',b:'yellow'},{t:'K',b:'cyan'}] },
-            { id: '3', title: 'Black And White -WallpapersClan', category: 'Basic', url: 'https://drive.google.com/uc?export=download&id=1HZmhc4IHorbTeQIHYeNbOSejUpvgyK3J', colors: ['from-[black]', 'to-[white]'], isPremium: false, iconCount: 85, icons: [{t:'B',b:'black'},{t:'A',b:'white'},{t:'N',b:'white'},{t:'W',b:'black'}] },
-            { id: '4', title: 'Black 3D -WallpapersClan', category: 'Basic', url: 'https://drive.google.com/uc?export=download&id=1X6lGMkn-jGhCt1CVDobgaHFaxp7qrrs8', colors: ['from-[#111]', 'to-[#444]'], isPremium: false, iconCount: 72, icons: [{t:'3',b:'black'},{t:'D',b:'black'},{t:'B',b:'black'},{t:'W',b:'black'}] },  
-            { id: '5', title: 'Blue Neon -WallpapersClan', category: 'Neon', url: 'https://drive.google.com/uc?export=download&id=1BBVMvQoYyCMb0wGqfa7o8HFSQyatiKav', colors: ['from-[blue]', 'to-[#333]'], isPremium: false, iconCount: 68, icons: [{t:'B',b:'darkblue'},{t:'L',b:'darkblue'},{t:'U',b:'darkblue'},{t:'E',b:'darkblue'}] },
-            { id: '6', title: 'Halloween -WallpapersClan', category: 'Holiday', url: 'https://drive.google.com/uc?export=download&id=1gfqNtebl63wCr9C6a4iiSAlnwJmI0KxI', colors: ['from-[#111]', 'to-[orange]'], isPremium: false, iconCount: 70, icons: [{t:'J',b:'orange'},{t:'A',b:'black'},{t:'C',b:'black'},{t:'K',b:'black'}] },  
+            { id: '1', type: 'theme', title: 'XMAS2025', category: 'Holiday', url: 'https://drive.google.com/uc?export=download&id=1AaXbDRcdwMeS8FMoATDg0B9N7hJHJz_j', banner: 'https://t4.ftcdn.net/jpg/10/10/43/19/360_F_1010431938_C7cRbFEbiIKEKiEQa9nyuiU8Z7U6hfYF.jpg', colors: ['from-red-500', 'to-red-900'], isVIP: false, iconCount: 34, icons: [{t:'X',b:'red'},{t:'M',b:'lightred'},{t:'A',b:'pink'},{t:'S',b:'darkred'}] },
+            { id: '2', type: 'theme', title: 'Rick And Morty', category: 'Cartoon', url: 'https://drive.google.com/uc?export=download&id=1jBNIQDMrtXD1IlVoR-K1INRd12Cb_2RV', banner: 'https://wallpapers-clan.com/wp-content/uploads/2025/01/rick-and-morty-action-portal-pc-wallpaper-preview.jpg', colors: ['from-green-500', 'to-blue-900'], isVIP: false, iconCount: 21, icons: [{t:'R',b:'green'},{t:'I',b:'lightgreen'},{t:'C',b:'yellow'},{t:'K',b:'cyan'}] },
+            { id: '3', type: 'theme', title: 'Black And White', category: 'Basic', url: 'https://drive.google.com/uc?export=download&id=1HZmhc4IHorbTeQIHYeNbOSejUpvgyK3J', banner: 'https://i.pinimg.com/736x/71/fc/5e/71fc5e7426b615ded2dfb6c76f61db98.jpg', colors: ['from-gray-700', 'to-black'], isVIP: false, iconCount: 85, icons: [{t:'B',b:'black'},{t:'A',b:'white'},{t:'N',b:'white'},{t:'W',b:'black'}] },
+            { id: '4', type: 'theme', title: 'Black 3D', category: 'Basic', url: 'https://drive.google.com/uc?export=download&id=1X6lGMkn-jGhCt1CVDobgaHFaxp7qrrs8', banner: 'https://t4.ftcdn.net/jpg/08/56/45/55/360_F_856455528_cej2Ab07SukGDZWvk9B3oECAYy3VEH9x.jpg', colors: ['from-zinc-800', 'to-black'], isVIP: false, iconCount: 72, icons: [{t:'3',b:'black'},{t:'D',b:'black'},{t:'B',b:'black'},{t:'W',b:'black'}] },  
+            { id: '5', type: 'theme', title: 'Blue Neon', category: 'Neon', url: 'https://drive.google.com/uc?export=download&id=1BBVMvQoYyCMb0wGqfa7o8HFSQyatiKav', banner: 'https://t4.ftcdn.net/jpg/04/90/51/93/360_F_490519300_Z0dytyKEoKE7eR6Pa0XlEkI0DJCnVaAc.jpg', colors: ['from-blue-600', 'to-indigo-950'], isVIP: false, iconCount: 68, icons: [{t:'B',b:'darkblue'},{t:'L',b:'darkblue'},{t:'U',b:'darkblue'},{t:'E',b:'darkblue'}] },
+            { id: '6', type: 'theme', title: 'Halloween', category: 'Holiday', url: 'https://drive.google.com/uc?export=download&id=1gfqNtebl63wCr9C6a4iiSAlnwJmI0KxI', banner: 'https://img.freepik.com/free-photo/digital-art-halloween-illustration_23-2151822706.jpg?semt=ais_hybrid&w=740&q=80', colors: ['from-orange-600', 'to-black'], isVIP: false, iconCount: 70, icons: [{t:'J',b:'orange'},{t:'A',b:'black'},{t:'C',b:'black'},{t:'K',b:'black'}] },  
+        ];
+
+        const WALLPAPERS = [
+            { id: 'w1', type: 'wallpaper', title: 'Deep Space', url: 'https://images.unsplash.com/photo-1464802686167-b939a6910659?auto=format&fit=crop&q=80&w=1080', category: 'Abstract', isVIP: false },
+            { id: 'w2', type: 'wallpaper', title: 'Leaf Wallpaper', url: 'https://wallpapers.com/images/thumbnail/simple-weed-design-for-iphone-llraguwgfe1ppwgq.jpg', category: 'Nature', isVIP: false },
+            { id: 'w3', type: 'wallpaper', title: 'Joker | B&W', url: 'https://r1.ilikewallpaper.net/iphone-wallpapers/download/24489/The-Joker-Batman-Black-White-Painting-Art-iphone-wallpaper-ilikewallpaper_com.jpg', category: 'Movie', isVIP: false },
+            { id: 'w4', type: 'wallpaper', title: 'Hello Kitty', url: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/f6e8401a-88e4-45ba-8b30-055fe7f21482/djjgait-ee5b68f2-6c3f-41fb-88e1-62d28adb9753.jpg/v1/fill/w_656,h_1219,q_70,strp/wp11519291_y2k_hello_kitty_wallpapers_by_misviolet10_djjgait-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI4MCIsInBhdGgiOiIvZi9mNmU4NDAxYS04OGU0LTQ1YmEtOGIzMC0wNTVmZTdmMjE0ODIvZGpqZ2FpdC1lZTViNjhmMi02YzNmLTQxZmItODhlMS02MmQyOGFkYjk3NTMuanBnIiwid2lkdGgiOiI8PTY4OSJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.u8pcLOoOqDqA2m266RQo9Hs9LX7OZqlEr-b-ee7bWSo', category: 'Cartoon', isVIP: false },
+            { id: 'w5', type: 'wallpaper', title: 'Blue Wallpaper', url: 'https://media.idownloadblog.com/wp-content/uploads/2021/09/Light_Beams_Blue_Light-iPhone-13-Pro-official-apple-wallpaper.jpg', category: 'Neon', isVIP: false },
+            { id: 'w6', type: 'wallpaper', title: 'Rick And Morty', url: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhjHXQmTbo5mznVlgVmF_nHZ-Yd_2wWgHVfyiIsf1DUApDUG7jJgbGJbxLvqIuJPD4jEnrI7IQE9f-SSobRq6m8EiU0UdQxu5GlK_AYZdYeCIVOA67-BZGH5shF9OfcU2AYoIOMoohtU0D5WWJtu9b60v9uuFF6y4uVfrJWnULBoJWX1IwimKlqTo19WA/d/rick-and-morty-wallpaper-ios-16.png', category: 'Cartoon', isVIP: false }
         ];
 
         let favorites = JSON.parse(localStorage.getItem('themePackFavorites') || '[]');
-        let currentThemeId = null;
+        let currentItem = null;
+        let activeCategory = 'All';
+        let currentSearchQuery = '';
 
-        function renderThemes(query = '') {
+        // --- NEW VIP PERSISTENCE LOGIC ---
+        function checkVipStatus() {
+            const expiry = localStorage.getItem('vipExpiry');
+            if (expiry) {
+                const now = new Date().getTime();
+                if (now < parseInt(expiry)) {
+                    hasVipAccess = true;
+                    updateVipUI(true);
+                    return;
+                }
+            }
+            hasVipAccess = false;
+            updateVipUI(false);
+            localStorage.removeItem('vipExpiry');
+        }
+
+        function updateVipUI(isVip) {
+            const statusEl = document.getElementById('profile-status');
+            const timerEl = document.getElementById('vip-timer');
+            const bannerEl = document.getElementById('go-vip-banner');
+            
+            if (isVip) {
+                statusEl.innerText = "VIP Member";
+                statusEl.className = "text-xs text-amber-500 bg-amber-500/10 border border-amber-500/30 px-2 py-1 rounded-full";
+                timerEl.classList.remove('hidden');
+                bannerEl.classList.add('hidden');
+            } else {
+                statusEl.innerText = "Free Plan";
+                statusEl.className = "text-xs text-gray-400 bg-gray-900 border border-gray-800 px-2 py-1 rounded-full";
+                timerEl.classList.add('hidden');
+                bannerEl.classList.remove('hidden');
+            }
+        }
+
+        // Live timer update
+        setInterval(() => {
+            const expiry = localStorage.getItem('vipExpiry');
+            if (expiry) {
+                const now = new Date().getTime();
+                const diff = parseInt(expiry) - now;
+                
+                if (diff <= 0) {
+                    checkVipStatus();
+                    renderThemes();
+                    renderWallpapers();
+                } else {
+                    const minutes = Math.floor(diff / 60000);
+                    const seconds = Math.floor((diff % 60000) / 1000);
+                    document.getElementById('vip-timer').innerText = 
+                        `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                }
+            }
+        }, 1000);
+
+        function renderThemes() {
             const grid = document.getElementById('themes-grid');
             grid.innerHTML = '';
-            const filtered = THEMES.filter(t => t.title.toLowerCase().includes(query.toLowerCase()));
+            
+            const filtered = THEMES.filter(t => {
+                const matchesSearch = t.title.toLowerCase().includes(currentSearchQuery.toLowerCase());
+                const matchesCategory = activeCategory === 'All' || t.category === activeCategory;
+                return matchesSearch && matchesCategory;
+            });
             
             filtered.forEach(theme => {
                 const card = document.createElement('div');
-                card.className = "bg-gray-900 rounded-2xl border border-gray-800 overflow-hidden active:scale-95 transition-all";
+                card.className = "bg-gray-900 rounded-2xl border border-gray-800 overflow-hidden active:scale-95 transition-all shadow-sm relative";
                 card.innerHTML = `
-                    <div class="h-36 bg-gradient-to-br ${theme.colors[0]} ${theme.colors[1]} flex items-center justify-center relative">
-                        <img src="https://placehold.co/60x60/${theme.icons[0].b}/fff/png?text=${theme.icons[0].t}" class="w-14 h-14 ios-icon shadow-lg">
-                        <div class="absolute bottom-2 flex gap-1 opacity-80 scale-75">
-                            <img src="https://placehold.co/40x40/${theme.icons[1].b}/fff/png?text=${theme.icons[1].t}" class="w-8 h-8 ios-icon">
-                            <img src="https://placehold.co/40x40/${theme.icons[2].b}/fff/png?text=${theme.icons[2].t}" class="w-8 h-8 ios-icon">
+                    ${theme.isVIP ? '<div class="absolute top-2 right-2 z-20 bg-amber-500 text-black text-[9px] font-black px-2 py-0.5 rounded-full shadow-lg">VIP</div>' : ''}
+                    <div class="h-36 relative flex items-center justify-center overflow-hidden bg-gray-800">
+                        <img src="${theme.banner}" class="absolute inset-0 w-full h-full object-cover opacity-60">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
+                        <img src="https://placehold.co/60x60/${theme.icons[0].b}/fff/png?text=${theme.icons[0].t}" class="w-14 h-14 ios-icon shadow-lg z-10">
+                        <div class="absolute bottom-2 flex gap-1 opacity-90 scale-75 z-10">
+                            <img src="https://placehold.co/40x40/${theme.icons[1].b}/fff/png?text=${theme.icons[1].t}" class="w-8 h-8 ios-icon shadow-md">
+                            <img src="https://placehold.co/40x40/${theme.icons[2].b}/fff/png?text=${theme.icons[2].t}" class="w-8 h-8 ios-icon shadow-md">
                         </div>
                     </div>
-                    <div class="p-3">
-                        <h3 class="font-bold text-sm">${theme.title}</h3>
-                        <p class="text-[10px] text-gray-500">${theme.category} • ${theme.iconCount} icons</p>
+                    <div class="p-3 bg-gray-900">
+                        <h3 class="font-bold text-sm truncate">${theme.title}</h3>
+                        <p class="text-[10px] text-gray-400 mt-0.5">${theme.category} • ${theme.iconCount} icons</p>
                     </div>
                 `;
-                card.onclick = () => {
-                    window.location.hash = `theme-${theme.id}`;
-                    openTheme(theme.id);
-                };
+                card.onclick = () => openItem(theme);
                 grid.appendChild(card);
             });
         }
 
-        function openTheme(id) {
-            const theme = THEMES.find(t => t.id === id);
-            if(!theme) return;
-            currentThemeId = id;
-            document.getElementById('modal-title').innerText = theme.title;
-            document.getElementById('modal-info-title').innerText = theme.title;
-            document.getElementById('modal-info-cat').innerText = theme.category + ' Collection';
-            document.getElementById('modal-icon-count').innerText = theme.iconCount;
-            document.getElementById('modal-license').innerText = theme.isPremium ? 'VIP' : 'Free';
-            document.getElementById('btn-install').href = theme.url;
-            
+        function renderWallpapers() {
+            const grid = document.getElementById('wallpaper-grid');
+            grid.innerHTML = '';
+            const filtered = WALLPAPERS.filter(w => w.title.toLowerCase().includes(currentSearchQuery.toLowerCase()));
+            filtered.forEach(wp => {
+                const card = document.createElement('div');
+                card.className = "bg-gray-900 rounded-2xl border border-gray-800 overflow-hidden active:scale-95 transition-all shadow-sm aspect-[9/16] relative";
+                card.innerHTML = `
+                    ${wp.isVIP ? '<div class="absolute top-3 right-3 z-20 bg-amber-500 text-black text-[9px] font-black px-2 py-0.5 rounded-full shadow-lg">VIP</div>' : ''}
+                    <img src="${wp.url}" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-3 left-3">
+                        <h3 class="font-bold text-xs truncate">${wp.title}</h3>
+                        <p class="text-[9px] text-gray-300 opacity-80">${wp.category}</p>
+                    </div>
+                `;
+                card.onclick = () => openItem(wp);
+                grid.appendChild(card);
+            });
+        }
+
+        function openItem(item) {
+            currentItem = item;
+            const isTheme = item.type === 'theme';
+            document.getElementById('modal-title').innerText = isTheme ? item.title : 'Wallpaper Details';
+            document.getElementById('modal-info-title').innerText = item.title;
+            document.getElementById('modal-info-cat').innerText = isTheme ? (item.category + ' Theme Pack') : (item.category + ' Wallpaper');
+            document.getElementById('btn-install').innerText = isTheme ? 'Install Pack' : 'Download Wallpaper';
+            document.getElementById('modal-stat-1-val').innerText = isTheme ? item.iconCount : 'HD';
+            document.getElementById('modal-stat-1-lbl').innerText = isTheme ? 'Icons' : 'Quality';
+            document.getElementById('modal-license').innerText = item.isVIP ? 'VIP 💎' : 'Free';
             const previewBox = document.getElementById('modal-preview-box');
-            previewBox.className = `w-full max-w-xs aspect-square rounded-[2.5rem] p-8 shadow-2xl flex items-center justify-center mb-8 relative bg-gradient-to-br ${theme.colors[0]} ${theme.colors[1]}`;
-            
-            const grid = document.getElementById('modal-icon-grid');
-            grid.innerHTML = theme.icons.map(i => `<img src="https://placehold.co/100x100/${i.b}/fff/png?text=${i.t}" class="w-full ios-icon shadow-xl">`).join('');
-            
+            const iconGrid = document.getElementById('theme-preview-elements');
+            const banner = document.getElementById('modal-banner');
+            if (isTheme) {
+                previewBox.className = `w-full max-w-xs aspect-square rounded-[2.5rem] shadow-2xl relative overflow-hidden flex items-center justify-center bg-gradient-to-br ${item.colors[0]} ${item.colors[1]}`;
+                banner.src = item.banner;
+                banner.className = "absolute inset-0 w-full h-full object-cover opacity-50 mix-blend-overlay";
+                iconGrid.classList.remove('hidden');
+                iconGrid.innerHTML = item.icons.map(i => `<img src="https://placehold.co/100x100/${i.b}/fff/png?text=${i.t}" class="w-full ios-icon shadow-xl">`).join('');
+                document.getElementById('modal-favorite').classList.remove('hidden');
+            } else {
+                previewBox.className = `w-full max-w-xs aspect-[9/16] rounded-[2.5rem] shadow-2xl relative overflow-hidden flex items-center justify-center`;
+                banner.src = item.url;
+                banner.className = "w-full h-full object-cover";
+                iconGrid.classList.add('hidden');
+                document.getElementById('modal-favorite').classList.add('hidden');
+            }
             updateFavoriteIcon();
             document.getElementById('theme-modal').classList.remove('hidden');
         }
 
-        function toggleFavorite() {
-            if (favorites.includes(currentThemeId)) {
-                favorites = favorites.filter(id => id !== currentThemeId);
+        document.getElementById('btn-install').onclick = () => {
+            if (!currentItem) return;
+            checkVipStatus(); // Force check before action
+            if (currentItem.isVIP && !hasVipAccess) {
+                showVipModal();
             } else {
-                favorites.push(currentThemeId);
+                window.open(currentItem.url, '_blank');
+            }
+        };
+
+        function showVipModal() {
+            document.getElementById('vip-modal').classList.remove('hidden');
+            document.getElementById('vip-pin-input').value = '';
+            document.getElementById('vip-pin-input').focus();
+        }
+
+        document.getElementById('cancel-vip').onclick = () => {
+            document.getElementById('vip-modal').classList.add('hidden');
+        };
+
+        document.getElementById('verify-vip').onclick = () => {
+            const input = document.getElementById('vip-pin-input').value;
+            if (input === VIP_PIN) {
+                const expiryTime = new Date().getTime() + VIP_DURATION_MS;
+                localStorage.setItem('vipExpiry', expiryTime.toString());
+                checkVipStatus();
+                
+                document.getElementById('vip-modal').classList.add('hidden');
+                showToast("VIP Unlocked for 5 Minutes!");
+                
+                setTimeout(() => {
+                    if(currentItem) window.open(currentItem.url, '_blank');
+                }, 1000);
+            } else {
+                showToast("Incorrect Code. Try again.");
+                document.getElementById('vip-pin-input').value = '';
+                document.getElementById('vip-pin-input').focus();
+            }
+        };
+
+        document.querySelectorAll('.category-pill').forEach(pill => {
+            pill.onclick = () => {
+                document.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+                activeCategory = pill.dataset.category;
+                renderThemes();
+                const title = document.getElementById('section-title');
+                title.innerText = activeCategory === 'All' ? (currentSearchQuery ? 'Search Results' : 'New Arrivals') : activeCategory + ' Themes';
+            };
+        });
+
+        function toggleFavorite() {
+            if (!currentItem || currentItem.type !== 'theme') return;
+            if (favorites.includes(currentItem.id)) {
+                favorites = favorites.filter(id => id !== currentItem.id);
+            } else {
+                favorites.push(currentItem.id);
             }
             localStorage.setItem('themePackFavorites', JSON.stringify(favorites));
             updateFavoriteIcon();
@@ -225,84 +440,59 @@
 
         function updateFavoriteIcon() {
             const btn = document.getElementById('modal-favorite');
-            const isFav = favorites.includes(currentThemeId);
+            const isFav = currentItem && favorites.includes(currentItem.id);
             btn.innerHTML = `<i data-lucide="heart" class="w-6 h-6 ${isFav ? 'text-pink-500 fill-pink-500' : 'text-white'}"></i>`;
             lucide.createIcons();
         }
 
-        function shareTheme() {
-            const theme = THEMES.find(t => t.id === currentThemeId);
-            const shareUrl = window.location.origin + window.location.pathname + '#theme-' + theme.id;
-            const shareData = { title: theme.title, text: `Check this out!`, url: shareUrl };
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.innerText = msg;
+            toast.style.display = 'block';
+            setTimeout(() => toast.style.display = 'none', 3000);
+        }
 
+        function shareItem() {
+            if(!currentItem) return;
+            const shareUrl = window.location.origin + window.location.pathname + '#item-' + currentItem.id;
             if (navigator.share) {
-                navigator.share(shareData).catch(console.error);
+                navigator.share({ title: currentItem.title, text: `Check this out on ThemeGram!`, url: shareUrl }).catch(console.error);
             } else {
                 const dummy = document.createElement('input');
                 document.body.appendChild(dummy);
-                dummy.value = shareUrl;
-                dummy.select();
+                dummy.value = shareUrl; dummy.select();
                 document.execCommand('copy');
                 document.body.removeChild(dummy);
-                const toast = document.getElementById('toast');
-                toast.style.display = 'block';
-                setTimeout(() => toast.style.display = 'none', 2000);
+                showToast("Link copied to clipboard!");
             }
         }
 
-        // Navigation
-        document.getElementById('nav-themes').onclick = () => {
-            document.getElementById('content-area').classList.remove('hidden');
-            document.getElementById('profile-area').classList.add('hidden');
-            document.getElementById('nav-themes').className = 'flex flex-col items-center gap-1 text-blue-500';
-            document.getElementById('nav-mine').className = 'flex flex-col items-center gap-1 text-gray-500';
-            document.getElementById('main-header').classList.remove('hidden');
-        };
-
-        document.getElementById('nav-mine').onclick = () => {
-            document.getElementById('content-area').classList.add('hidden');
-            document.getElementById('profile-area').classList.remove('hidden');
-            document.getElementById('nav-mine').className = 'flex flex-col items-center gap-1 text-blue-500';
-            document.getElementById('nav-themes').className = 'flex flex-col items-center gap-1 text-gray-500';
-            document.getElementById('main-header').classList.add('hidden');
-        };
-
-        document.getElementById('search-trigger').onclick = () => {
-            document.getElementById('main-header').classList.add('hidden');
-            document.getElementById('search-bar').classList.remove('hidden');
-            document.getElementById('search-input').focus();
-        };
-
-        document.getElementById('cancel-search').onclick = () => {
-            document.getElementById('main-header').classList.remove('hidden');
-            document.getElementById('search-bar').classList.add('hidden');
-            document.getElementById('search-input').value = '';
-            document.getElementById('hero').style.display = 'block';
-            document.getElementById('section-title').innerText = 'New Arrivals';
-            renderThemes();
-        };
-
-        document.getElementById('search-input').oninput = (e) => {
-            const query = e.target.value;
-            renderThemes(query);
-            document.getElementById('hero').style.display = query ? 'none' : 'block';
-            document.getElementById('section-title').innerText = query ? 'Search Results' : 'New Arrivals';
-        };
-
-        document.getElementById('close-modal').onclick = () => {
-            document.getElementById('theme-modal').classList.add('hidden');
-            window.location.hash = '';
+        function showPage(pageId) {
+            const pages = ['content-area', 'wallpaper-area', 'profile-area'];
+            pages.forEach(p => document.getElementById(p).classList.add('hidden'));
+            document.getElementById(pageId).classList.remove('hidden');
+            const navs = {'content-area': 'nav-themes', 'wallpaper-area': 'nav-wallpapers', 'profile-area': 'nav-mine'};
+            Object.entries(navs).forEach(([pid, nid]) => {
+                const btn = document.getElementById(nid);
+                btn.className = pid === pageId ? "flex flex-col items-center gap-1 text-blue-500" : "flex flex-col items-center gap-1 text-gray-500";
+            });
+            document.getElementById('main-header').classList.toggle('hidden', pageId === 'profile-area');
         }
+
+        document.getElementById('nav-themes').onclick = () => showPage('content-area');
+        document.getElementById('nav-wallpapers').onclick = () => { renderWallpapers(); showPage('wallpaper-area'); };
+        document.getElementById('nav-mine').onclick = () => { checkVipStatus(); showPage('profile-area'); };
+        document.getElementById('search-trigger').onclick = () => { document.getElementById('main-header').classList.add('hidden'); document.getElementById('search-bar').classList.remove('hidden'); document.getElementById('search-input').focus(); };
+        document.getElementById('cancel-search').onclick = () => { document.getElementById('main-header').classList.remove('hidden'); document.getElementById('search-bar').classList.add('hidden'); document.getElementById('search-input').value = ''; currentSearchQuery = ''; document.getElementById('hero').style.display = 'block'; renderThemes(); renderWallpapers(); };
+        document.getElementById('search-input').oninput = (e) => { currentSearchQuery = e.target.value; renderThemes(); renderWallpapers(); document.getElementById('hero').style.display = currentSearchQuery ? 'none' : 'block'; };
+        document.getElementById('close-modal').onclick = () => { document.getElementById('theme-modal').classList.add('hidden'); }
         document.getElementById('modal-favorite').onclick = toggleFavorite;
-        document.getElementById('btn-share').onclick = shareTheme;
+        document.getElementById('btn-share').onclick = shareItem;
 
         window.onload = () => {
+            checkVipStatus();
             renderThemes();
-            const hash = window.location.hash;
-            if(hash && hash.startsWith('#theme-')) {
-                const id = hash.split('-')[1];
-                openTheme(id);
-            }
+            renderWallpapers();
             lucide.createIcons();
         };
     </script>

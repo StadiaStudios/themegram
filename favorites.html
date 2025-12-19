@@ -31,18 +31,18 @@
             <i data-lucide="heart" class="w-16 h-16 mb-4 opacity-20"></i>
             <p class="font-medium text-lg">No favorites yet</p>
             <p class="text-sm">Heart a theme to see it here!</p>
-            <a href="index.html" class="mt-6 bg-blue-600 text-white px-8 py-3 rounded-full font-bold">Browse Themes</a>
+            <a href="settings.html" class="mt-6 bg-blue-600 text-white px-8 py-3 rounded-full font-bold">Browse Themes</a>
         </div>
     </main>
 
     <script>
         const THEMES = [
-            { id: '1', title: 'XMAS2025', category: 'Holiday', url: 'https://drive.google.com/uc?export=download&id=1AaXbDRcdwMeS8FMoATDg0B9N7hJHJz_j', colors: ['from-red-500', 'to-red-900'], isPremium: false, iconCount: 34, icons: [{t:'X',b:'red'},{t:'M',b:'lightred'},{t:'A',b:'pink'},{t:'S',b:'darkred'}] },
-            { id: '2', title: 'Rick And Morty', category: 'Cartoon', url: 'https://drive.google.com/uc?export=download&id=1jBNIQDMrtXD1IlVoR-K1INRd12Cb_2RV', colors: ['from-yellow-500', 'to-green-900'], isPremium: false, iconCount: 21, icons: [{t:'R',b:'green'},{t:'I',b:'lightgreen'},{t:'C',b:'yellow'},{t:'K',b:'cyan'}] },
-            { id: '3', title: 'Black And White -WallpapersClan', category: 'Basic', url: 'https://drive.google.com/uc?export=download&id=1HZmhc4IHorbTeQIHYeNbOSejUpvgyK3J', colors: ['from-[black]', 'to-[white]'], isPremium: false, iconCount: 85, icons: [{t:'B',b:'black'},{t:'A',b:'white'},{t:'N',b:'white'},{t:'W',b:'black'}] },
-            { id: '4', title: 'Black 3D -WallpapersClan', category: 'Basic', url: 'https://drive.google.com/uc?export=download&id=1X6lGMkn-jGhCt1CVDobgaHFaxp7qrrs8', colors: ['from-[#111]', 'to-[#444]'], isPremium: false, iconCount: 72, icons: [{t:'3',b:'black'},{t:'D',b:'black'},{t:'B',b:'black'},{t:'W',b:'black'}] },  
-            { id: '5', title: 'Blue Neon -WallpapersClan', category: 'Neon', url: 'https://drive.google.com/uc?export=download&id=1BBVMvQoYyCMb0wGqfa7o8HFSQyatiKav', colors: ['from-[blue]', 'to-[#333]'], isPremium: false, iconCount: 68, icons: [{t:'B',b:'darkblue'},{t:'L',b:'darkblue'},{t:'U',b:'darkblue'},{t:'E',b:'darkblue'}] },
-            { id: '6', title: 'Halloween -WallpapersClan', category: 'Holiday', url: 'https://drive.google.com/uc?export=download&id=1gfqNtebl63wCr9C6a4iiSAlnwJmI0KxI', colors: ['from-[#111]', 'to-[orange]'], isPremium: false, iconCount: 70, icons: [{t:'J',b:'orange'},{t:'A',b:'black'},{t:'C',b:'black'},{t:'K',b:'black'}] },  
+            { id: '1', type: 'theme', title: 'XMAS2025', category: 'Holiday', url: 'https://drive.google.com/uc?export=download&id=1AaXbDRcdwMeS8FMoATDg0B9N7hJHJz_j', banner: 'https://t4.ftcdn.net/jpg/10/10/43/19/360_F_1010431938_C7cRbFEbiIKEKiEQa9nyuiU8Z7U6hfYF.jpg', colors: ['from-red-500', 'to-red-900'], isVIP: false, iconCount: 34, icons: [{t:'X',b:'red'},{t:'M',b:'lightred'},{t:'A',b:'pink'},{t:'S',b:'darkred'}] },
+            { id: '2', type: 'theme', title: 'Rick And Morty', category: 'Cartoon', url: 'https://drive.google.com/uc?export=download&id=1jBNIQDMrtXD1IlVoR-K1INRd12Cb_2RV', banner: 'https://wallpapers-clan.com/wp-content/uploads/2025/01/rick-and-morty-action-portal-pc-wallpaper-preview.jpg', colors: ['from-green-500', 'to-blue-900'], isVIP: false, iconCount: 21, icons: [{t:'R',b:'green'},{t:'I',b:'lightgreen'},{t:'C',b:'yellow'},{t:'K',b:'cyan'}] },
+            { id: '3', type: 'theme', title: 'Black And White', category: 'Basic', url: 'https://drive.google.com/uc?export=download&id=1HZmhc4IHorbTeQIHYeNbOSejUpvgyK3J', banner: 'https://i.pinimg.com/736x/71/fc/5e/71fc5e7426b615ded2dfb6c76f61db98.jpg', colors: ['from-gray-700', 'to-black'], isVIP: true, iconCount: 85, icons: [{t:'B',b:'black'},{t:'A',b:'white'},{t:'N',b:'white'},{t:'W',b:'black'}] },
+            { id: '4', type: 'theme', title: 'Black 3D', category: 'Basic', url: 'https://drive.google.com/uc?export=download&id=1X6lGMkn-jGhCt1CVDobgaHFaxp7qrrs8', banner: 'https://t4.ftcdn.net/jpg/08/56/45/55/360_F_856455528_cej2Ab07SukGDZWvk9B3oECAYy3VEH9x.jpg', colors: ['from-zinc-800', 'to-black'], isVIP: false, iconCount: 72, icons: [{t:'3',b:'black'},{t:'D',b:'black'},{t:'B',b:'black'},{t:'W',b:'black'}] },  
+            { id: '5', type: 'theme', title: 'Blue Neon', category: 'Neon', url: 'https://drive.google.com/uc?export=download&id=1BBVMvQoYyCMb0wGqfa7o8HFSQyatiKav', banner: 'https://t4.ftcdn.net/jpg/04/90/51/93/360_F_490519300_Z0dytyKEoKE7eR6Pa0XlEkI0DJCnVaAc.jpg', colors: ['from-blue-600', 'to-indigo-950'], isVIP: false, iconCount: 68, icons: [{t:'B',b:'darkblue'},{t:'L',b:'darkblue'},{t:'U',b:'darkblue'},{t:'E',b:'darkblue'}] },
+            { id: '6', type: 'theme', title: 'Halloween', category: 'Holiday', url: 'https://drive.google.com/uc?export=download&id=1gfqNtebl63wCr9C6a4iiSAlnwJmI0KxI', banner: 'https://img.freepik.com/free-photo/digital-art-halloween-illustration_23-2151822706.jpg?semt=ais_hybrid&w=740&q=80', colors: ['from-orange-600', 'to-black'], isVIP: false, iconCount: 70, icons: [{t:'J',b:'orange'},{t:'A',b:'black'},{t:'C',b:'black'},{t:'K',b:'black'}] },  
         ];
 
         function renderFavorites() {
@@ -94,5 +94,4 @@
         window.onload = renderFavorites;
     </script>
 </body>
-
 </html>
