@@ -122,7 +122,7 @@
         </div>
         <div id="go-vip-banner" class="bg-gradient-to-r from-amber-900 to-yellow-800 rounded-2xl p-4 mb-6 border border-yellow-700/30">
             <h3 class="font-bold flex items-center gap-2"><i data-lucide="crown" class="w-4 h-4 fill-current"></i> Go VIP</h3>
-            <p class="text-xs opacity-80 mt-1">Unlock all themes & Wallpapers now for just $0,99/Month | UNTIL JAN 25, 2025 | Was $2,80/Month</p>
+            <p class="text-xs opacity-80 mt-1">Unlock all themes & Wallpapers now for just $2,99/12 Months | ONE TIME PAY UNTIL JAN 25, 2025 | Was $2,99/Month</p>
         </div>
         <div class="space-y-2">
             <a href="favorites.html" class="bg-gray-900 p-4 rounded-xl border border-gray-800 flex justify-between items-center">
@@ -208,7 +208,7 @@
 
     <script>
         // --- VIP SETTINGS ---
-        const VIP_PIN = "VIPMEMBER"; 
+        const VIP_PIN = "2025XMAS"; 
         const VIP_DURATION_MS = 5 * 60 * 1000; // 5 Minutes in milliseconds
         
         let hasVipAccess = false; 
@@ -223,7 +223,7 @@
         ];
 
         const WALLPAPERS = [
-            { id: 'w1', type: 'wallpaper', title: 'Deep Space', url: 'https://images.unsplash.com/photo-1464802686167-b939a6910659?auto=format&fit=crop&q=80&w=1080', category: 'Abstract', isVIP: false },
+            { id: 'w1', type: 'wallpaper', title: 'HD IOS 12 WP', url: 'https://w0.peakpx.com/wallpaper/378/857/HD-wallpaper-iphone-12-pro-ios-14-iphone-12-thumbnail.jpg', category: 'IOS', isVIP: false },
             { id: 'w2', type: 'wallpaper', title: 'Leaf Wallpaper', url: 'https://wallpapers.com/images/thumbnail/simple-weed-design-for-iphone-llraguwgfe1ppwgq.jpg', category: 'Nature', isVIP: false },
             { id: 'w3', type: 'wallpaper', title: 'Joker | B&W', url: 'https://r1.ilikewallpaper.net/iphone-wallpapers/download/24489/The-Joker-Batman-Black-White-Painting-Art-iphone-wallpaper-ilikewallpaper_com.jpg', category: 'Movie', isVIP: false },
             { id: 'w4', type: 'wallpaper', title: 'Hello Kitty', url: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/f6e8401a-88e4-45ba-8b30-055fe7f21482/djjgait-ee5b68f2-6c3f-41fb-88e1-62d28adb9753.jpg/v1/fill/w_656,h_1219,q_70,strp/wp11519291_y2k_hello_kitty_wallpapers_by_misviolet10_djjgait-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI4MCIsInBhdGgiOiIvZi9mNmU4NDAxYS04OGU0LTQ1YmEtOGIzMC0wNTVmZTdmMjE0ODIvZGpqZ2FpdC1lZTViNjhmMi02YzNmLTQxZmItODhlMS02MmQyOGFkYjk3NTMuanBnIiwid2lkdGgiOiI8PTY4OSJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.u8pcLOoOqDqA2m266RQo9Hs9LX7OZqlEr-b-ee7bWSo', category: 'Cartoon', isVIP: false },
@@ -354,7 +354,7 @@
             document.getElementById('btn-install').innerText = isTheme ? 'Install Pack' : 'Download Wallpaper';
             document.getElementById('modal-stat-1-val').innerText = isTheme ? item.iconCount : 'HD';
             document.getElementById('modal-stat-1-lbl').innerText = isTheme ? 'Icons' : 'Quality';
-            document.getElementById('modal-license').innerText = item.isVIP ? 'VIP 💎' : 'Free';
+            document.getElementById('modal-license').innerText = item.isVIP ? '❄️VIP🎅🏻' : '🎁Free🎄';
             const previewBox = document.getElementById('modal-preview-box');
             const iconGrid = document.getElementById('theme-preview-elements');
             const banner = document.getElementById('modal-banner');
