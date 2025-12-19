@@ -1,0 +1,55 @@
+{
+"short_name": "ThemeGram",
+"name": "ThemeGram",
+"description": "A stylish Cloud Database for IOS App Icon Themes. Add Page to homescreen to install!.",
+"icons": [
+{
+"src": "assets/favicon.png",
+"type": "image/png",
+"sizes": "192x192",
+"purpose": "any"
+},
+{
+"src": "assets/favicon.png",
+"type": "image/png",
+"sizes": "512x512",
+"purpose": "any"
+}
+],
+"start_url": "index.html",
+"background_color": "#ffffff",
+"display": "standalone",
+"scope": "/",
+"theme_color": "#000000",
+"orientation": "portrait-primary",
+"screenshots": [
+{
+"src": "screenshots/desktop.png",
+"sizes": "1280x720",
+"type": "image/png",
+"form_factor": "wide",
+"label": "Desktop View"
+},
+{
+"src": "screenshots/mobile.png",
+"sizes": "750x1334",
+"type": "image/png",
+"form_factor": "narrow",
+"label": "Mobile View"
+}
+],
+"shortcuts": [
+{
+"name": "Open Settings",
+"short_name": "Settings",
+"description": "View app settings",
+"url": "/settings",
+"icons": [
+{
+"src": "assets/favicon.png",
+"sizes": "192x192"
+}
+]
+}
+]
+}

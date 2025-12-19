@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThemeGram | Favorites</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.png">
+    <link rel="manifest" href="manifest.json">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: black; color: white; }
+        .ios-icon { border-radius: 22.5%; }
+    </style>
+</head>
+<body class="pb-10">
+
+    <header class="sticky top-0 z-40 bg-black/80 backdrop-blur-xl border-b border-gray-800 px-4 h-16 flex items-center justify-between">
+        <a href="index.html" class="p-2 -ml-2 text-blue-400">
+            <i data-lucide="chevron-left" class="w-6 h-6"></i>
+        </a>
+        <h1 class="font-bold text-lg">My Favorites</h1>
+        <div class="w-10"></div>
+    </header>
+
+    <main class="p-4">
+        <div id="favorites-grid" class="grid grid-cols-2 gap-4"></div>
+
+        <div id="empty-state" class="hidden flex flex-col items-center justify-center py-24 text-gray-500">
+            <i data-lucide="heart" class="w-16 h-16 mb-4 opacity-20"></i>
+            <p class="font-medium text-lg">No favorites yet</p>
+            <p class="text-sm">Heart a theme to see it here!</p>
+            <a href="index.html" class="mt-6 bg-blue-600 text-white px-8 py-3 rounded-full font-bold">Browse Themes</a>
+        </div>
+    </main>
+
+    <script>
+        const THEMES = [
+            { id: '1', title: 'XMAS2025', category: 'Christmas', url: 'index.html#theme-1', colors: ['from-red-500', 'to-red-900'], isPremium: false, iconCount: 124, icons: [{t:'X',b:'red'},{t:'M',b:'lightred'},{t:'A',b:'pink'},{t:'S',b:'darkred'}] },
+            { id: '2', title: 'Rick And Morty', category: 'Cartoon', url: 'index.html#theme-1', colors: ['from-yellow-500', 'to-green-900'], isPremium: false, iconCount: 124, icons: [{t:'R',b:'green'},{t:'I',b:'lightgreen'},{t:'C',b:'yellow'},{t:'K',b:'cyan'}] },
+            { id: '3', title: 'Black And White - WallpapersClan', category: 'Basic', url: 'https://drive.google.com/uc?export=download&id=1HZmhc4IHorbTeQIHYeNbOSejUpvgyK3J', colors: ['from-[black]', 'to-[white]'], isPremium: false, iconCount: 85, icons: [{t:'R',b:'black'},{t:'I',b:'white'},{t:'C',b:'white'},{t:'K',b:'black'}] },
+            { id: '4', title: 'Rick And Morty', category: 'Cartoon', url: 'index.html#theme-1', colors: ['from-yellow-500', 'to-green-900'], isPremium: false, iconCount: 124, icons: [{t:'R',b:'green'},{t:'I',b:'lightgreen'},{t:'C',b:'yellow'},{t:'K',b:'cyan'}] },  
+        ];
+
+        function renderFavorites() {
+            const favoritesIds = JSON.parse(localStorage.getItem('themePackFavorites') || '[]');
+            const grid = document.getElementById('favorites-grid');
+            const emptyState = document.getElementById('empty-state');
+            
+            grid.innerHTML = '';
+            const favThemes = THEMES.filter(t => favoritesIds.includes(t.id));
+
+            if (favThemes.length === 0) {
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+
+            favThemes.forEach(theme => {
+                const card = document.createElement('div');
+                card.className = "bg-gray-900 rounded-2xl border border-gray-800 overflow-hidden relative active:scale-95 transition-all";
+                card.innerHTML = `
+                    <a href="index.html#theme-${theme.id}" class="block">
+                        <div class="h-32 bg-gradient-to-br ${theme.colors[0]} ${theme.colors[1]} flex items-center justify-center">
+                            <img src="https://placehold.co/60x60/${theme.icons[0].b}/fff/png?text=${theme.icons[0].t}" class="w-12 h-12 ios-icon shadow-lg">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="font-bold text-sm truncate">${theme.title}</h3>
+                            <p class="text-[10px] text-gray-500">${theme.category}</p>
+                        </div>
+                    </a>
+                    <button onclick="removeFav(event, '${theme.id}')" class="absolute top-2 right-2 p-1.5 bg-black/40 backdrop-blur-md rounded-full text-pink-500 z-10">
+                        <i data-lucide="heart" class="w-4 h-4 fill-current"></i>
+                    </button>
+                `;
+                grid.appendChild(card);
+            });
+            lucide.createIcons();
+        }
+
+        function removeFav(event, id) {
+            event.preventDefault();
+            event.stopPropagation();
+            let favorites = JSON.parse(localStorage.getItem('themePackFavorites') || '[]');
+            favorites = favorites.filter(fid => fid !== id);
+            localStorage.setItem('themePackFavorites', JSON.stringify(favorites));
+            renderFavorites();
+        }
+
+        window.onload = renderFavorites;
+    </script>
+</body>
+</html>
