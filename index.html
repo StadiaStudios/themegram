@@ -130,6 +130,10 @@
                 <i data-lucide="chevron-right" class="text-gray-600 w-5 h-5"></i>
             </a>
             <a href="settings.html" class="bg-gray-900 p-4 rounded-xl border border-gray-800 flex justify-between items-center">
+                <span class="font-medium flex items-center gap-3"><i data-lucide="crown" class="w-4 h-4 fill-current"></i>Upload Pack/Wallpapers</span>
+                <i data-lucide="chevron-right" class="text-gray-600 w-5 h-5"></i>
+            </a>
+            <a href="settings.html" class="bg-gray-900 p-4 rounded-xl border border-gray-800 flex justify-between items-center">
                 <span class="font-medium flex items-center gap-3"><i data-lucide="settings" class="text-gray-400 w-5 h-5"></i>Settings</span>
                 <i data-lucide="chevron-right" class="text-gray-600 w-5 h-5"></i>
             </a>
@@ -235,6 +239,19 @@
         let currentItem = null;
         let activeCategory = 'All';
         let currentSearchQuery = '';
+
+        // --- DEEP LINK HANDLER ---
+        function handleDeepLink() {
+            const hash = window.location.hash;
+            if (hash && hash.startsWith('#item-')) {
+                const id = hash.replace('#item-', '');
+                const item = THEMES.find(t => t.id === id) || WALLPAPERS.find(w => w.id === id);
+                if (item) {
+                    // Short timeout to ensure icons/images render properly
+                    setTimeout(() => openItem(item), 100);
+                }
+            }
+        }
 
         // --- NEW VIP PERSISTENCE LOGIC ---
         function checkVipStatus() {
@@ -365,15 +382,20 @@
                 iconGrid.classList.remove('hidden');
                 iconGrid.innerHTML = item.icons.map(i => `<img src="https://placehold.co/100x100/${i.b}/fff/png?text=${i.t}" class="w-full ios-icon shadow-xl">`).join('');
                 document.getElementById('modal-favorite').classList.remove('hidden');
+                showPage('content-area'); // Ensure we are on themes page if deep linked
             } else {
                 previewBox.className = `w-full max-w-xs aspect-[9/16] rounded-[2.5rem] shadow-2xl relative overflow-hidden flex items-center justify-center`;
                 banner.src = item.url;
                 banner.className = "w-full h-full object-cover";
                 iconGrid.classList.add('hidden');
                 document.getElementById('modal-favorite').classList.add('hidden');
+                showPage('wallpaper-area'); // Ensure we are on wallpapers page if deep linked
             }
             updateFavoriteIcon();
             document.getElementById('theme-modal').classList.remove('hidden');
+            
+            // Update URL hash without reload
+            history.replaceState(null, null, '#item-' + item.id);
         }
 
         document.getElementById('btn-install').onclick = () => {
@@ -454,13 +476,21 @@
 
         function shareItem() {
             if(!currentItem) return;
-            const shareUrl = window.location.origin + window.location.pathname + '#item-' + currentItem.id;
+            // Build the absolute URL correctly
+            const base = window.location.href.split('#')[0];
+            const shareUrl = base + '#item-' + currentItem.id;
+            
             if (navigator.share) {
-                navigator.share({ title: currentItem.title, text: `Check this out on ThemeGram!`, url: shareUrl }).catch(console.error);
+                navigator.share({ 
+                    title: currentItem.title, 
+                    text: `Check out the "${currentItem.title}" ${currentItem.type} on ThemeGram!`, 
+                    url: shareUrl 
+                }).catch(console.error);
             } else {
                 const dummy = document.createElement('input');
                 document.body.appendChild(dummy);
-                dummy.value = shareUrl; dummy.select();
+                dummy.value = shareUrl; 
+                dummy.select();
                 document.execCommand('copy');
                 document.body.removeChild(dummy);
                 showToast("Link copied to clipboard!");
@@ -485,7 +515,11 @@
         document.getElementById('search-trigger').onclick = () => { document.getElementById('main-header').classList.add('hidden'); document.getElementById('search-bar').classList.remove('hidden'); document.getElementById('search-input').focus(); };
         document.getElementById('cancel-search').onclick = () => { document.getElementById('main-header').classList.remove('hidden'); document.getElementById('search-bar').classList.add('hidden'); document.getElementById('search-input').value = ''; currentSearchQuery = ''; document.getElementById('hero').style.display = 'block'; renderThemes(); renderWallpapers(); };
         document.getElementById('search-input').oninput = (e) => { currentSearchQuery = e.target.value; renderThemes(); renderWallpapers(); document.getElementById('hero').style.display = currentSearchQuery ? 'none' : 'block'; };
-        document.getElementById('close-modal').onclick = () => { document.getElementById('theme-modal').classList.add('hidden'); }
+        document.getElementById('close-modal').onclick = () => { 
+            document.getElementById('theme-modal').classList.add('hidden'); 
+            // Clear hash when closing
+            history.replaceState(null, null, window.location.pathname);
+        }
         document.getElementById('modal-favorite').onclick = toggleFavorite;
         document.getElementById('btn-share').onclick = shareItem;
 
@@ -494,7 +528,11 @@
             renderThemes();
             renderWallpapers();
             lucide.createIcons();
+            handleDeepLink(); // Call the deep link handler on load
         };
+
+        // Also handle hash changes while the app is open
+        window.onhashchange = handleDeepLink;
     </script>
 </body>
 </html>
